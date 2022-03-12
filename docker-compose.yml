@@ -1,0 +1,26 @@
+version: '3.5'
+
+networks:
+  default-network:
+    driver: bridge
+
+services:
+  database:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: leadscoreweb
+      MYSQL_USER: leadscore_user
+      MYSQL_PASSWORD: leadscore_web
+      MYSQL_DATABASE: Leadscore
+    ports:
+      - '3306:3306'
+    networks:
+      - default-network
+
+volumes:
+  db_data:
+    driver: local
